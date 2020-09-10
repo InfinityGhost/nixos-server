@@ -5,9 +5,12 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
+  imports = [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      # Storage
+      ./storage.nix
+      # Network File System Configuration
       ./nfs.nix
     ];
 
@@ -24,15 +27,6 @@
   # replicates the default behaviour.
   networking.useDHCP = false;
   networking.interfaces.enp3s0.useDHCP = true;
-
-  # Storage
-  fileSystems."/media" = {
-    device = "/dev/disk/by-id/wwn-0x5000c500ad6e2c8e-part1";
-    fsType = "ext4";
-    options = [
-      "nofail"
-    ];
-  };
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
