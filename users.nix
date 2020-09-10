@@ -1,3 +1,5 @@
+{ pkgs, ...}:
+
 {
   users.users.infinity = {
     isNormalUser = true;
