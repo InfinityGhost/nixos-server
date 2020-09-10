@@ -8,9 +8,8 @@
   imports = [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      # Storage
       ./storage.nix
-      # Network File System Configuration
+      ./users.nix
       ./nfs.nix
     ];
 
@@ -44,7 +43,6 @@
   environment.systemPackages = with pkgs; [
     wget
     git
-    neofetch
   ];
   
   # Automatically update packages
@@ -75,12 +73,6 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  # User accounts
-  users.users.infinity = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
