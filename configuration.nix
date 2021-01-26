@@ -37,6 +37,15 @@
     wget
     git
   ];
+
+  # Allow remote building
+  nix = {
+    distributedBuilds = true;
+    trustedUsers = [
+      "infinity"
+      "@root"
+    ];
+  };
   
   # Automatically update packages
   system.autoUpgrade.enable = true;
@@ -50,6 +59,7 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  services.openssh.passwordAuthentication = false;
 
   # Enable the git daemon
   services.gitDaemon = {
@@ -63,6 +73,9 @@
 
   # Firewall
   networking.firewall.enable = false;
+
+  # Virtualization
+  virtualisation.libvirtd.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

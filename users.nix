@@ -3,7 +3,10 @@
 {
   users.users.infinity = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [
+      "wheel"
+      "libvirt"
+    ];
     packages = with pkgs; [
       neofetch
     ];
