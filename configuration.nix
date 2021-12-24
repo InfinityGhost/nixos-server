@@ -2,12 +2,14 @@
 
 {
   imports = [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./storage.nix
-      ./users.nix
-      ./nfs.nix
-    ];
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./storage.nix
+    ./users.nix
+    ./shares.nix
+    ./remote-build.nix
+    ./acserver.nix
+  ];
 
   # GRUB 2
   boot.loader.grub.enable = true;
@@ -38,15 +40,6 @@
     git
   ];
 
-  # Allow remote building
-  nix = {
-    distributedBuilds = true;
-    trustedUsers = [
-      "infinity"
-      "@root"
-    ];
-  };
-  
   # Automatically update packages
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = true;
@@ -71,11 +64,15 @@
     home = "/home/git";
   };
 
+  programs.nano.nanorc = ''
+    set suspend
+    set autoindent
+    set tabstospaces
+    set tabsize 2
+  '';
+
   # Firewall
   networking.firewall.enable = false;
-
-  # Virtualization
-  virtualisation.libvirtd.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
