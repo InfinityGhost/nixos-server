@@ -39,6 +39,7 @@
   environment.systemPackages = with pkgs; [
     wget
     git
+    mc
   ];
 
   # Automatically update packages
