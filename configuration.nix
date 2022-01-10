@@ -42,10 +42,6 @@
     mc
   ];
 
-  # Automatically update packages
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.allowReboot = true;
-
   # Plex
   services.plex = {
     enable = true;
